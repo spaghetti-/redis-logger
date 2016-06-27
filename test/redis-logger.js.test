@@ -1,0 +1,47 @@
+'use strict';
+require('chai');
+require('should');
+var Logger = require('../redis-logger').Logger;
+var log = new Logger({});
+var client = require('redis').createClient();
+
+describe('tests for logger', function () {
+  it('emits a info message successfully', function (done) {
+    var testMessage = 'test message';
+    log.info(testMessage);
+    client.lpop(log.key, function (error, message) {
+      var m = JSON.parse(message);
+      m.message.should.equal(testMessage);
+      m.hostname.should.equal(require('os').hostname());
+      m.service.should.equal('redis-logger');
+      m.level.should.equal('INFO');
+      done();
+    });
+  });
+
+  it('emits a warning message successfully', function (done) {
+    var warnMessage = 'warning';
+    log.warn(warnMessage);
+    client.lpop(log.key, function (error, message) {
+      var m = JSON.parse(message);
+      m.message.should.equal(warnMessage);
+      m.hostname.should.equal(require('os').hostname());
+      m.service.should.equal('redis-logger');
+      m.level.should.equal('WARN');
+      done();
+    });
+  });
+
+  it('emits a error message successfully', function (done) {
+    var errorMessage = 'error message';
+    log.error(errorMessage);
+    client.lpop(log.key, function (error, message) {
+      var m = JSON.parse(message);
+      m.message.should.equal(errorMessage);
+      m.hostname.should.equal(require('os').hostname());
+      m.service.should.equal('redis-logger');
+      m.level.should.equal('FATAL');
+      done();
+    });
+  });
+});

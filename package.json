@@ -1,0 +1,29 @@
+{
+  "name": "redis-logger",
+  "version": "0.0.1",
+  "description": "Simple logger that outputs to redis",
+  "main": "redis-logger.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test/redis-logger.js.test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/spaghetti-/redis-logger.git"
+  },
+  "author": "Alex <dev@xrng.net> (https://github.com/spaghetti-)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spaghetti-/redis-logger/issues"
+  },
+  "homepage": "https://github.com/spaghetti-/redis-logger#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "should": "^9.0.2"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "redis": "^2.6.2",
+    "stack-trace": "0.0.9"
+  }
+}
