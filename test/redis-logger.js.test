@@ -2,7 +2,7 @@
 require('chai');
 require('should');
 var Logger = require('../redis-logger').Logger;
-var log = new Logger({});
+var log = new Logger({ console: false });
 var client = require('redis').createClient();
 
 describe('tests for logger', function () {

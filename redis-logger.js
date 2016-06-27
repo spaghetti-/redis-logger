@@ -14,10 +14,11 @@ var Logger = exports.Logger = function(options) {
 
   this.timestamp = options.timestamp || false;
   this.key = options.key || 'logstash:debug';
-  this.console = options.console || true;
+  this.console = options.console || false;
   this.defaultLogObject = {
     hostname: require('os').hostname(),
-    service: options.service || "redis-logger"
+    service: options.service || "redis-logger",
+    level: "INFO"
   };
 }
 
@@ -33,7 +34,6 @@ Logger.prototype.getDebugInfo = function() {
 
 Logger.prototype.info = function (message) {
   var Log = this.getDebugInfo();
-  Log.level = "INFO";
   Log.message = message;
   if (this.console)
     console.log('INFO' + ': ' + message);
