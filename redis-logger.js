@@ -25,8 +25,8 @@ var Logger = exports.Logger = function(options) {
 Logger.prototype.getDebugInfo = function() {
   var Log = this.defaultLogObject;
   var frame = stackTrace.get()[2];
-  Log.lineNumber = frame.getLineNumber();
-  Log.fileName = frame.getFileName();
+  Log.linenumber = frame.getLineNumber();
+  Log.filename = frame.getFileName();
   Log.method = frame.getFunctionName();
   if (this.timestamp) Log.timestamp = new Date().toISOString();
   return Log;
