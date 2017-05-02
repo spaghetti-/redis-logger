@@ -30,7 +30,7 @@ var Logger = exports.Logger = function(options) {
 }
 
 Logger.prototype.redisTransport = function (t, o) {
-  t.client.lpush(t.key, JSON.stringify(o));
+  //t.client.lpush(t.key, JSON.stringify(o));
 }
 
 Logger.prototype.consoleTransport = function (t, o) {
